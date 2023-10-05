@@ -1,2 +1,2 @@
 # Blog_App
-Create Responsive Blog App using MERN
+Designed Responsive Blog App using MERN
