@@ -21,7 +21,8 @@ app.use(cors({credentials:true,origin:'http://localhost:3000'}));
 app.use(express.json());
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'uploads')));
-app.use('/uploads', express.static(__dirname + '/uploads'))
+app.use('/uploads', express.static(__dirname + '/uploads'));
+app.use('/post/uploads', express.static('uploads'));
 
 
 mongoose.connect('mongodb+srv://shah2116d:F6GL7HQJg9SNgeq8@cluster0.2d0bsgy.mongodb.net/?retryWrites=true&w=majority');
@@ -95,6 +96,11 @@ app.post('/login', async (req,res) => {
         .limit(20)
     );
   });
+  app.get('/post/:id', async (req, res) => {
+    const {id} = req.params;
+    const postDoc = await Post.findById(id).populate('author', ['username']);
+    res.json(postDoc);
+  })
 
 app.post('/logout', (req, res) =>{
     res.cookie('token').json('ok')

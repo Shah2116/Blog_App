@@ -1,15 +1,20 @@
 import React from "react";
 import {format} from "date-fns";
+import { Link } from "react-router-dom";
 
 function Post({_id,title,summary,cover,content,createdAt,author}) {
     return (
 
         <div className='post'>
-            <div>
+            <div className="image">
+            <Link to={`/post/${_id}`}>
                 <img src={'http://localhost:4000/' +cover} alt="img" ></img>
+                </Link>
             </div>
-            <div className='content'>
+            <div className='texts'>
+            <Link to={`/post/${_id}`}>
                 <h2>{title}</h2>
+                </Link>
                 <p className='info'>
                     <a className='author'>Shah Alam</a>
                     <time>{format(new Date(createdAt),'MMM d, yyyy, HH:mm' )}</time>
